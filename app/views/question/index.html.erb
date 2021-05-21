@@ -1,0 +1,51 @@
+<div class="container-fluid">
+	<div class="container-fluid" style="margin: 10px 0px 50px 20px;">
+		<h3>Upload Questions</h3>
+		<%= form_tag import_questions_path, multipart: true do %>
+			<%= file_field_tag :file %><br>
+			<%= submit_tag 'Upload', class:"btn btn-primary"%>
+		<% end %>
+	</div>
+
+	<div class="container-fluid">
+		<h3>List of uploaded questions:</h3><br>
+		<table class="table table-bordered table-hover" id="question_table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Sl No.</th>
+		      <th scope="col">Question</th>
+		      <th scope="col">Teaming Stages</th>
+		      <th scope="col">Appears (Day)</th>
+		      <th scope="col">Frequency</th>
+		      <th scope="col">Type</th>
+		      <th scope="col">Role</th>
+		      <th scope="col">Required?</th>
+		      <th scope="col">condition</th>
+		      <th scope="col">Mapping</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @questions.each do |question_row, ind| %>
+		    	<tr>
+		    		<td><%= question_row.id %></td>
+		    		<td><%= question_row.title %></</td>
+		    		<td><%= question_row.team_stages %></</td>
+		    		<td><%= question_row.appears %></</td>
+		    		<td><%= question_row.frequency %></</td>
+		    		<td><%= question_row.rate_type %></</td>
+		    		<td><%= question_row.role.title %></</td>
+		    		<td><%= question_row.required %></</td>
+		    		<td><%= question_row.condition %></</td>
+		    		<td><%= question_row.mapping.title %></</td>
+		    	</tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#question_table").dataTable();
+	});
+</script>
