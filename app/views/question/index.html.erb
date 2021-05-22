@@ -1,5 +1,8 @@
 <div class="container-fluid">
 	<div class="container-fluid" style="margin: 10px 0px 50px 20px;">
+		<% if flash[:error].present? %>
+			<p><%= flash[:error]%></p>
+		<% end %>
 		<h3>Upload Questions</h3>
 		<%= form_tag import_questions_path, multipart: true do %>
 			<%= file_field_tag :file %><br>
